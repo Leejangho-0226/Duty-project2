@@ -24,10 +24,10 @@ export default function CompanyHero() {
       className="company-hero"
       aria-label="Company Hero"
     >
-      {/* 배경 비디오 */}
+      {/* 배경 비디오 (GitHub Pages base 경로 대응) */}
       <video
         className="company-hero__video"
-        src="/videos/company-hero.mp4"
+        src={`${import.meta.env.BASE_URL}videos/company-hero.mp4`}
         autoPlay
         loop
         muted
