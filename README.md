@@ -265,7 +265,7 @@ DUTY4/                                  (프로젝트 루트)
 ├─ README.md                            (깃허브 대표 문서)
 ├─ tailwind.config.js                   (Tailwind 설정 파일)
 └─ vite.config.js                       (Vite 설정)
-
+```
 
 ## 기술 스택
 
@@ -324,15 +324,17 @@ DUTY4/                                  (프로젝트 루트)
 ### 프로젝트 의존성 설치
 ```bash
 npm install
-
-
+```
 개발 서버 실행
+```bash
 npm run dev
-
+```
 브라우저 접속
+```bash
 http://localhost:5173
-
-제작자
+```
+---
+### 제작자
 
 이장호
 
