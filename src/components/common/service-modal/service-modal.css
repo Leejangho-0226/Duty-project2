@@ -1,0 +1,211 @@
+/* src/components/common/service-modal.css */
+
+.svc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.svc-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  border: 0;
+  padding: 0;
+}
+
+.svc-modal__panel {
+  position: relative;
+  width: min(1100px, calc(100vw - 32px));
+  height: min(640px, calc(100vh - 64px));
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: rgba(18, 22, 28, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+
+  /* footer가 panel 바닥에 떠도 내용 안 가리게 하단 여유 */
+  padding-bottom: 76px;
+}
+
+/* 닫기 버튼: 문의 모달 톤(흰 배경 + 검은 글씨)으로 통일 */
+.svc-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #000000;
+
+  border: 1px solid rgba(255, 255, 255, 0);
+  cursor: pointer;
+
+  font-size: 22px;
+  line-height: 1;
+  z-index: 50;
+
+  display: grid;
+  place-items: center;
+
+  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+}
+
+.svc-modal__close:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.svc-modal__close:active {
+  transform: translateY(1px);
+}
+
+/* 포커스 링은 유지(접근성) */
+.svc-modal__close:focus-visible,
+.svc-modal__cta:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+.svc-modal__layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+}
+
+/* LEFT */
+.svc-modal__left {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.svc-modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* RIGHT */
+.svc-modal__right {
+  position: relative;
+  height: 100%;
+  padding: 26px 24px 22px;
+  min-width: 0;
+}
+
+/* 제목 */
+.svc-modal__head {
+  padding-top: 2px;
+}
+
+.svc-modal__title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+/* 설명 */
+.svc-modal__desc {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.svc-modal__line {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.10);
+}
+
+/* footer: panel 기준 우하단 고정 */
+.svc-modal__footer {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  z-index: 999;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  pointer-events: auto;
+}
+
+/* 바로가기 버튼: 문의 모달 버튼 톤(흰 배경 + 검은 글씨)으로 통일 */
+.svc-modal__cta {
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  background: #ffffff;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+
+  border: 1px solid transparent;
+
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+}
+
+.svc-modal__cta:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.svc-modal__cta:active {
+  transform: translateY(1px);
+}
+
+.svc-modal__cta.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 모바일 */
+@media (max-width: 860px) {
+  .svc-modal {
+    padding: 12px;
+  }
+
+  .svc-modal__panel {
+    height: min(720px, calc(100vh - 48px));
+    padding-bottom: 70px;
+  }
+
+  .svc-modal__layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.05fr 1fr;
+  }
+
+  .svc-modal__right {
+    padding: 18px 18px 16px;
+  }
+
+  .svc-modal__title {
+    font-size: 24px;
+  }
+
+  .svc-modal__footer {
+    right: 18px;
+    bottom: 16px;
+  }
+}

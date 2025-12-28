@@ -1,0 +1,201 @@
+/* src/sections/corporate/platform-overview.css */
+
+.platform-overview {
+  width: 100%;
+  padding: 112px 0;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.platform-overview__inner {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.platform-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .platform-overview__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* LEFT : 회사 소개 문구 영역
+   → 이 아래에서 "왼쪽 글자 크기 / 줄간격" 조절 */
+
+.platform-overview__intro {
+  max-width: 560px;
+}
+
+/* 왼쪽 메인 타이틀 
+   - font-size : 글자 크기
+   - line-height : 줄 간격
+   - letter-spacing : 자간 */
+.platform-overview__title {
+  font-size: 47px;          /* ← 타이틀 글자 크기 조절 */
+  font-weight: 700;
+  line-height: 1.2;         /* ← 타이틀 줄 간격 조절 */
+  letter-spacing: -0.02em;  /* ← 자간 조절 */
+}
+
+/* 왼쪽 설명 문단
+   - font-size : 본문 글자 크기
+   - line-height : 본문 줄 간격
+   - margin-top : 타이틀과의 간격 */
+.platform-overview__desc {
+  margin-top: 24px;         /* ← 타이틀과 설명 사이 간격 */
+  font-size: 20px;          /* ← 설명 글자 크기 */
+  line-height: 1.7;         /* ← 설명 줄 간격 */
+  color: var(--text-sub);
+}
+
+/* RIGHT : 카드 영역 */
+
+.platform-overview__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .platform-overview__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 깔끔 버전(2번째 느낌) */
+.platform-overview__cards--clean {
+  gap: 28px;
+}
+
+/* 카드 타일 */
+
+.platform-tile {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+
+  padding: 28px;
+
+  /* 카드 높이 통일 (최적값) */
+  height: 292px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  text-align: center;
+}
+
+/* 카드 상단 얇은 하이라이트 */
+.platform-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* 카드 아이콘 */
+.platform-tile__img {
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  display: block;
+  margin-top: 2px;
+}
+
+/* 번호 + 제목 묶음 */
+.platform-tile__meta {
+  margin-top: 16px;
+  width: 100%;
+}
+
+/* ✅ 카드 번호 (01, 02, 03, 04)
+   - font-size : 숫자 크기
+   - padding : 칩 여백
+   - background / border : 포인트 컬러 */
+.platform-tile__no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;                 /* ← 숫자 크기 */
+  font-weight: 800;
+  letter-spacing: 0.08em;
+
+  padding: 6px 10px;               /* ← 칩 여백 */
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(99, 102, 241, 0.22);      /* ← 포인트 컬러 */
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+
+.platform-tile__title {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  word-break: keep-all;
+
+  /* 카드 높이 유지용 2줄 제한 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 카드 스태거드 위치 */
+
+@media (min-width: 640px) {
+  .platform-tile--1 {
+    margin-top: 36px;
+  }
+
+  .platform-tile--2 {
+    margin-top: -10px;
+  }
+
+  .platform-tile--3 {
+    margin-top: 18px;
+  }
+
+  .platform-tile--4 {
+    margin-top: -22px;
+  }
+}
+
+/* 모바일 대응 */
+
+@media (max-width: 639px) {
+  .platform-tile--1,
+  .platform-tile--2,
+  .platform-tile--3,
+  .platform-tile--4 {
+    margin-top: 0;
+  }
+
+  .platform-tile__img {
+    width: 118px;
+    height: 118px;
+  }
+
+  .platform-tile {
+    height: 276px;
+  }
+}

@@ -1,0 +1,222 @@
+/* src/sections/corporate/contact-section.css */
+
+.contact-section {
+  width: 100%;
+  padding: 140px 0 160px;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.contact-inner {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+}
+
+@media (min-width: 1024px) {
+  .contact-inner {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 96px;
+
+    /* 오른쪽 컬럼이 왼쪽 높이를 따라가도록 */
+    align-items: stretch;
+  }
+}
+
+/* -------------------------
+   LEFT
+------------------------- */
+
+/* CONTACT 라벨 텍스트 크기 */
+.contact-label {
+  font-size: 24px;              
+  letter-spacing: 0.22em;
+  opacity: 0.65;
+  margin-bottom: 18px;
+}
+
+/* 메인 타이틀 "문의" 글자 크기 */
+.contact-title {
+  font-size: clamp(50px, 4.2vw, 66px); 
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  margin: 0;
+}
+
+/* 서브 타이틀 "빠르게 연결해 드릴게요" */
+.contact-subtitle {
+  margin: 14px 0 0;
+  font-size: clamp(22px, 1.6vw, 25px); 
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* 설명 문단 텍스트 */
+.contact-desc {
+  margin-top: 16px;
+  font-size: 17px;              
+  line-height: 1.75;
+  color: var(--text-sub);
+}
+
+/* 왼쪽 메타(현재 JSX에선 미사용) */
+.contact-meta {
+  margin-top: 28px;
+  list-style: none;
+  padding: 0;
+}
+
+.contact-meta li {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: start;
+}
+
+/* 메타 라벨 글자 크기 */
+.contact-meta span {
+  opacity: 0.6;
+  font-size: 14px;              
+  line-height: 1.6;
+}
+
+/* 메타 실제 값 글자 크기 */
+.contact-meta strong {
+  font-weight: 700;
+  font-size: 14px;              
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* -------------------------
+   RIGHT
+------------------------- */
+
+.contact-right {
+  display: flex;
+  justify-content: flex-end;
+
+  /* contact-inner의 stretch를 받아 카드 100% 높이가 가능하게 */
+  align-self: stretch;
+}
+
+/* 오른쪽 문의 카드 */
+.contact-ctaCard {
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+
+  border-radius: 24px;
+
+  padding: 38px 34px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* 카드 타이틀 "지금 문의 남기기" */
+.contact-ctaTitle {
+  margin: 0;
+  font-size: 22px;              
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* 카드 설명 문구 */
+.contact-ctaDesc {
+  margin-top: 14px;
+  font-size: 15px;              
+  line-height: 1.75;
+  color: var(--text-sub);
+}
+
+/* 문의하기 버튼 텍스트 */
+.contact-ctaBtn {
+  margin-top: 18px;
+  width: 100%;
+  height: 56px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+
+  background: #ffffff;
+  color: #000000;
+  font-weight: 900;             
+  letter-spacing: -0.01em;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 오른쪽 카드 하단 연락처 영역 */
+.contact-ctaMeta {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+  display: grid;
+  gap: 12px;
+}
+
+/* 연락처 한 줄 */
+.contact-ctaRow {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+/* 연락처 라벨 글자 크기 */
+.contact-ctaRow span {
+  font-size: 17px;              
+  opacity: 0.65;
+  line-height: 1.6;
+}
+
+/* 연락처 실제 값 글자 크기 */
+.contact-ctaRow strong {
+  font-size: 15px;              
+  font-weight: 700;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 데스크탑에서 카드가 길어질 때 패딩 보정 */
+@media (min-width: 1024px) {
+  .contact-ctaCard {
+    padding: 42px 36px;
+  }
+}
+
+/* 모바일에서는 카드 높이 자동 */
+@media (max-width: 1023px) {
+  .contact-right {
+    justify-content: flex-start;
+    align-self: auto;
+  }
+
+  .contact-ctaCard {
+    max-width: 520px;
+    height: auto;
+    padding: 30px 26px;
+  }
+}

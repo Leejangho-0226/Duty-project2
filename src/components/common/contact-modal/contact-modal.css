@@ -1,0 +1,328 @@
+/* src/components/common/contact-modal.css */
+
+.cmodal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.cmodal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  border: 0;
+  padding: 0;
+}
+
+/* 모달 패널: 고정 height 제거(내부 스크롤 안 생기게) */
+.cmodal__panel {
+  position: relative;
+  width: min(900px, calc(100vw - 32px));
+
+  height: auto;
+  max-height: calc(100vh - 64px);
+
+  border-radius: 22px;
+
+  background: rgba(18, 22, 28, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* header */
+.cmodal__header {
+  padding: 22px 22px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* JSX에서 label 제거했지만 혹시 남아도 안 보이게 */
+.cmodal__label {
+  display: none;
+}
+
+.cmodal__title {
+  margin: 0;
+  font-size: 28px; /* 글자 크기 조절 포인트: 헤더 타이틀(문의) */
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.cmodal__desc {
+  margin: 10px 0 0;
+  font-size: 14px; /* 글자 크기 조절 포인트: 헤더 설명 멘트 */
+  color: rgba(255, 255, 255, 0.70);
+  line-height: 1.55;
+}
+
+/* 닫기 버튼: 보내기 버튼(Primary)과 같은 톤으로 통일 */
+.cmodal__close {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #000000;
+
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+}
+
+.cmodal__close:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.cmodal__close:active {
+  transform: translateY(1px);
+}
+
+/* body */
+.cmodal__body {
+  padding: 18px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  flex: 1;
+  overflow: hidden; /* 내부 스크롤 제거 */
+}
+
+.cmodal__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 720px) {
+  .cmodal__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 라벨(이름/이메일/문의유형/문의내용) */
+.cmodal__field label {
+  display: block;
+  font-size: 17px; /* 글자 크기 조절 포인트: 라벨(이름/이메일/문의유형/문의내용) */
+  font-weight: 800;
+  opacity: 1;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 10px;
+}
+
+/* 입력/셀렉트/텍스트에리어 공통 */
+.cmodal__field input,
+.cmodal__field select,
+.cmodal__field textarea {
+  width: 100%;
+  border-radius: 12px;
+  padding: 13px 14px;
+
+  font-size: 15px; /* 글자 크기 조절 포인트: input/select/textarea 입력 글자 */
+  font-weight: 600;
+
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.96);
+
+  outline: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.cmodal__field input::placeholder,
+.cmodal__field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.cmodal__field input:hover,
+.cmodal__field select:hover,
+.cmodal__field textarea:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.cmodal__field input:focus,
+.cmodal__field select:focus,
+.cmodal__field textarea:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* textarea: 화면 크기에 맞춰 높이 자동, 스크롤 원인 줄이기 */
+.cmodal__field textarea {
+  height: clamp(140px, 22vh, 220px);
+  resize: none;
+  line-height: 1.6;
+}
+
+/* 도움 문구 */
+.cmodal__help {
+  margin: 10px 0 0;
+  font-size: 14px; /* 글자 크기 조절 포인트: 도움 문구(답변 속도 멘트) */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+/* 에러 문구 */
+.cmodal__error {
+  margin: 10px 0 0;
+  font-size: 13px; /* 글자 크기 조절 포인트: 에러 문구 */
+  font-weight: 700;
+  color: rgba(255, 120, 120, 0.92);
+}
+
+/* 카운트 영역 */
+.cmodal__meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cmodal__count {
+  font-size: 13px; /* 글자 크기 조절 포인트: 글자 수 카운트 */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* footer */
+.cmodal__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  position: sticky;
+  bottom: 0;
+
+  padding-top: 14px;
+  padding-bottom: 6px;
+
+  background: linear-gradient(
+    to top,
+    rgba(18, 22, 28, 0.98) 0%,
+    rgba(18, 22, 28, 0.82) 45%,
+    rgba(18, 22, 28, 0.0) 100%
+  );
+}
+
+.cmodal__btn {
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  font-size: 14px; /* 글자 크기 조절 포인트: 버튼 글자 */
+  font-weight: 800;
+
+  border: 1px solid transparent;
+  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+}
+
+.cmodal__btn:active {
+  transform: translateY(1px);
+}
+
+.cmodal__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 취소 버튼도 보내기(Primary)와 완전히 동일하게 통일 */
+.cmodal__btn.ghost {
+  background: #ffffff;
+  color: #000000;
+}
+
+.cmodal__btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.cmodal__btn.primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.cmodal__btn.primary:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* -------------------------------------------------
+   문의 유형(select)만 화살표가 보이게
+   hover/focus 때 밀리는 현상 해결
+------------------------------------------------- */
+
+/* 문의 유형 필드만 기준점 */
+.cmodal__field--select {
+  position: relative;
+}
+
+/* 문의 유형 select: 기존 background-image 제거 + 오른쪽 여백 확보 */
+.cmodal__field--select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding-right: 52px; /* 글자 크기 조절 포인트: 셀렉트 오른쪽 여백(화살표 공간) */
+
+  background-image: none;
+  background-position: initial;
+  background-size: initial;
+  background-repeat: no-repeat;
+}
+
+/* 화살표를 문의 유형 필드에만 고정 */
+.cmodal__field--select::after {
+  content: "";
+  position: absolute;
+
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid rgba(255, 255, 255, 0.90);
+
+  pointer-events: none;
+}
+
+/* hover/focus 때도 padding-right 값이 바뀌지 않게 고정 */
+.cmodal__field--select select:hover,
+.cmodal__field--select select:focus {
+  padding-right: 52px;
+}
+
+/* -------------------------------------------------
+   드롭다운 옵션(목록) 가독성 수정
+   흰색 바탕 + 검은 글씨로 보이게
+------------------------------------------------- */
+
+.cmodal__field--select select option {
+  background: #ffffff;
+  color: #000000;
+}
+
+.cmodal__field--select select:focus option {
+  background: #ffffff;
+  color: #000000;
+}

@@ -1,0 +1,277 @@
+/* src/sections/corporate/partners-section.css */
+
+.partners-section {
+  width: 100%;
+  padding: 140px 0 160px;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.partners-inner {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* -------------------------
+   Header (왼쪽 기준으로 통일)
+------------------------- */
+.partners-header {
+  text-align: left;                 
+  margin-bottom: 64px;
+  max-width: 720px;                 
+}
+
+/* PARTNERS 라벨 */
+.partners-label {
+  font-size: 24px;
+  letter-spacing: 0.22em;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+/* 메인 타이틀 */
+.partners-title {
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+/* 서브 텍스트 */
+.partners-sub {
+  margin-top: 18px;
+  font-size: 20px;
+  opacity: 0.78;
+}
+
+/* -------------------------
+   Logos Grid (고급/덜 밋밋하게)
+------------------------- */
+
+/* 전체 로고 판(투명 박스) */
+.partners-logos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 0; /* 그리드 라인으로 구분 */
+  padding: 0;
+
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* 은은한 상단 하이라이트(밋밋함 제거) */
+.partners-logos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+
+  background:
+    radial-gradient(900px 260px at 50% 0%, rgba(120, 200, 255, 0.10), transparent 60%),
+    radial-gradient(460px 240px at 85% 30%, rgba(120, 200, 255, 0.06), transparent 62%);
+
+  opacity: 0.95;
+}
+
+/* 패널 안쪽 테두리 느낌(유리판 감) */
+.partners-logos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* 각 칸: 개별 카드 느낌 제거 + 큼직하게 */
+.partners-logo {
+  height: 126px; /* 살짝 더 큼직 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+
+  position: relative;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+/* 얇은 그리드 선 (오른쪽/아래 라인) */
+.partners-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat,
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+}
+
+/* 마지막 열은 오른쪽 선 제거 (4열 기준) */
+.partners-logo:nth-child(4n)::after {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+}
+
+/* 마지막 줄은 아래 선 제거 (마지막 4개) */
+.partners-logo:nth-last-child(-n + 4)::after {
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat;
+}
+
+/* 마지막 줄 + 마지막 열은 선 전부 제거 */
+.partners-logo:nth-last-child(-n + 4):nth-child(4n)::after {
+  background: none;
+}
+
+/* 로고: 크게 + 다크 배경에서 보이도록 */
+.partners-logo__img {
+  width: auto;
+  height: 46px; /* 기본값 조금 키움 */
+  max-width: 240px;
+
+  opacity: 0.88;
+  filter: invert(1) grayscale(1);
+  transform: translateY(0);
+
+  transition: opacity 180ms ease, filter 180ms ease, transform 180ms ease;
+}
+
+/* -------------------------
+   Logo size tuning (예외 처리)
+   JSX 배열 순서 기준:
+   1 Kakao, 2 Samsung, 3 Naver, 4 LG
+   5 Google, 6 LINE, 7 Hyundai, 8 Nexon
+------------------------- */
+.partners-logo:nth-child(1) .partners-logo__img { height: 56px; } /* Kakao */
+.partners-logo:nth-child(2) .partners-logo__img { height: 54px; } /* Samsung */
+.partners-logo:nth-child(4) .partners-logo__img { height: 52px; } /* LG */
+.partners-logo:nth-child(3) .partners-logo__img { height: 50px; } /* Naver */
+.partners-logo:nth-child(5) .partners-logo__img { height: 44px; } /* Google */
+
+/* -------------------------
+   Hover (밋밋함 제거)
+------------------------- */
+.partners-logo:hover {
+  background: rgba(120, 200, 255, 0.035);
+  transform: translateY(-1px);
+}
+
+.partners-logo:hover .partners-logo__img {
+  opacity: 1;
+  filter: invert(1) grayscale(0) drop-shadow(0 10px 22px rgba(120, 200, 255, 0.18));
+  transform: scale(1.04);
+}
+
+/* -------------------------
+   Responsive
+------------------------- */
+@media (max-width: 1024px) {
+  .partners-section {
+    padding: 110px 0 130px;
+  }
+
+  .partners-header {
+    max-width: 640px;
+  }
+
+  .partners-logos {
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+  }
+
+  .partners-logo {
+    height: 118px;
+  }
+
+  /* 3열 기준으로 "마지막 열" 규칙 재정의 */
+  .partners-logo:nth-child(4n)::after {
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat,
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+  }
+
+  .partners-logo:nth-child(3n)::after {
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+  }
+
+  /* 마지막 줄(마지막 3개) 아래선 제거 */
+  .partners-logo:nth-last-child(-n + 3)::after {
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat;
+  }
+
+  .partners-logo:nth-last-child(-n + 3):nth-child(3n)::after {
+    background: none;
+  }
+
+  /* 태블릿에서 예외 높이 살짝 다운 */
+  .partners-logo:nth-child(1) .partners-logo__img { height: 52px; }
+  .partners-logo:nth-child(2) .partners-logo__img { height: 50px; }
+  .partners-logo:nth-child(3) .partners-logo__img { height: 48px; }
+  .partners-logo:nth-child(4) .partners-logo__img { height: 48px; }
+}
+
+@media (max-width: 640px) {
+  .partners-header {
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+
+  .partners-sub {
+    font-size: 16px;
+  }
+
+  .partners-logos {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+
+  .partners-logo {
+    height: 104px;
+  }
+
+  .partners-logo__img {
+    height: 38px;
+    max-width: 180px;
+  }
+
+  /* 2열 기준으로 "마지막 열" 규칙 재정의 */
+  .partners-logo:nth-child(3n)::after {
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat,
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+  }
+
+  .partners-logo:nth-child(2n)::after {
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) bottom/100% 1px no-repeat;
+  }
+
+  /* 마지막 줄(마지막 2개) 아래선 제거 */
+  .partners-logo:nth-last-child(-n + 2)::after {
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) right/1px 100% no-repeat;
+  }
+
+  .partners-logo:nth-last-child(-n + 2):nth-child(2n)::after {
+    background: none;
+  }
+
+  /* 모바일에서 로고 예외치도 살짝 줄이기 */
+  .partners-logo:nth-child(1) .partners-logo__img { height: 42px; }
+  .partners-logo:nth-child(2) .partners-logo__img { height: 40px; }
+  .partners-logo:nth-child(3) .partners-logo__img { height: 40px; }
+  .partners-logo:nth-child(4) .partners-logo__img { height: 40px; }
+}

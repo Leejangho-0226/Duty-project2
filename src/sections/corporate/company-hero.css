@@ -1,0 +1,303 @@
+/* src/sections/corporate/company-hero.css */
+
+:root {
+  --hero-text: #fff;
+  --hero-bg: #000;
+
+  --hero-max: 1120px;
+  --hero-pad-x: 24px;
+
+  --hero-title-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.75),
+    0 0 32px rgba(255, 255, 255, 0.08);
+  --hero-text-shadow: 0 12px 26px rgba(0, 0, 0, 0.65);
+
+  --hero-ease: 0.18s ease;
+
+  /* 버튼 제거했지만, 변수는 남겨둬도 문제 없음(나중에 다시 CTA 넣을 수도 있으니까) */
+  --btn-h: 56px;
+  --btn-r: 14px;
+}
+
+/* =========================
+   Layout
+========================= */
+.company-hero {
+  position: relative;
+  width: 100%;
+
+  /* 뷰포트 높이 안정화(모바일 주소창 대응) */
+  height: 100vh;   /* fallback */
+  height: 100svh;  /* small viewport height */
+  height: 100dvh;  /* dynamic viewport height */
+
+  overflow: hidden;
+  background: var(--hero-bg);
+  color: var(--hero-text);
+}
+
+/* Video */
+.company-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* 영상 톤 안정화 */
+  filter: brightness(0.72) contrast(1.05) saturate(1.05);
+  transform: translateZ(0);
+}
+
+/* Overlay */
+.company-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.46) 55%,
+      rgba(0, 0, 0, 0.82) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.18) 38%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+}
+
+/* Content */
+.company-hero__inner {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+  max-width: var(--hero-max);
+  margin: 0 auto;
+  padding: 0 var(--hero-pad-x);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  gap: 16px;
+}
+
+/* 텍스트 보호막 */
+.company-hero__inner::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: min(980px, 94vw);
+  height: 540px;
+  z-index: -1;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.18) 58%,
+    rgba(0, 0, 0, 0.00) 100%
+  );
+  filter: blur(14px);
+}
+
+/* =========================
+   Typography
+========================= */
+.company-hero__topline {
+  font-size: clamp(13px, 1.2vw, 16px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  opacity: 0.95;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.company-hero__title {
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  text-shadow: var(--hero-title-shadow);
+
+  max-width: 980px;
+}
+
+.company-hero__desc {
+  margin-top: 6px;
+  max-width: 760px;
+
+  font-size: clamp(16px, 1.7vw, 21px);
+  line-height: 1.75;
+  opacity: 0.92;
+  text-shadow: var(--hero-text-shadow);
+}
+
+/* =========================
+   Buttons
+   - 현재 JSX에서 actions/button을 제거했지만,
+     혹시 나중에 다시 넣을 수도 있으니 스타일은 남겨둠
+========================= */
+.company-hero__actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+}
+
+.company-hero__btn {
+  height: var(--btn-h);
+  padding: 0 26px;
+  min-width: 140px;
+
+  border-radius: var(--btn-r);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+
+  transition:
+    transform var(--hero-ease),
+    opacity var(--hero-ease),
+    background var(--hero-ease),
+    box-shadow var(--hero-ease);
+}
+
+.company-hero__btn:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.company-hero__btn:active {
+  transform: translateY(1px);
+}
+
+.company-hero__btn--ghost {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.42);
+}
+
+.company-hero__btn--primary {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
+
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 0 rgba(255, 255, 255, 0.6);
+}
+
+/* =========================
+   Scroll
+   - JSX 구조 변경:
+     <span class="company-hero__mouse" />
+     <span class="company-hero__scrollText">SCROLL DOWN</span>
+========================= */
+.company-hero__scroll {
+  position: absolute;
+  left: 50%;
+
+  /* 기기별 간격 + safe-area 하단 잘림 방지 */
+  bottom: clamp(18px, 3vh, 42px);
+  bottom: max(clamp(18px, 3vh, 42px), env(safe-area-inset-bottom));
+
+  transform: translateX(-50%);
+  z-index: 3;
+
+  /* 기존 캡슐 배경 제거: 이미지처럼 아이콘+텍스트만 깔끔하게 */
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.92);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+
+  transition: transform var(--hero-ease), opacity var(--hero-ease);
+}
+
+.company-hero__scroll:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* SCROLL DOWN 텍스트 */
+.company-hero__scrollText {
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+/* 마우스 윤곽 */
+.company-hero__mouse {
+  width: 22px;
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  position: relative;
+  flex: 0 0 auto;
+}
+
+/* 마우스 안의 휠(점) 애니메이션 */
+.company-hero__mouse::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+
+  animation: heroMouseWheel 1.35s ease-in-out infinite;
+}
+
+@keyframes heroMouseWheel {
+  0%   { transform: translate(-50%, 0); opacity: 1; }
+  70%  { transform: translate(-50%, 12px); opacity: 0.25; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  /* 버튼이 현재 없더라도, 혹시 추가될 상황 대비 */
+  .company-hero__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .company-hero__btn {
+    width: 100%;
+  }
+}
+
+/* Motion reduce */
+@media (prefers-reduced-motion: reduce) {
+  .company-hero__mouse::after { animation: none; }
+  .company-hero__scroll { transition: none; }
+  .company-hero__btn { transition: none; }
+}

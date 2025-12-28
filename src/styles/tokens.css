@@ -1,0 +1,14 @@
+:root {
+  --header-height: 64px;
+
+  /* Dark System */
+  --bg-main: #171D27;     /* 쏘카 느낌 베이스 */
+  --bg-deep: #121722;     /* Hero/강조 */
+  --bg-soft: #1E2433;     /* 카드/섹션 분리 */
+
+  --text-main: #ffffff;
+  --text-sub: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border-color: rgba(255, 255, 255, 0.12);
+}
